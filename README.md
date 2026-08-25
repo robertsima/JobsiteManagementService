@@ -1,4 +1,4 @@
-# Spring Boot Starter Template
+# Jobsite Management Service
 ## Stateless OIDC/OAuth(Single or multiple issuers), PostgreSQL, TestContainers, Liquibase, Docker/Postman, OpenAPI
 This project serves as a boilerplate template for a scalable spring boot microservice. Configured for integration testing using Postgres SQL in TestContainers as well as OAuth2/OIDC JWT authentication. This specific template is designed around using keycloak for authentication/authorization but can be changed to fit whatever need. Also comes with a base docker image, yaml for kubernetes pods, liquibase(prod and test) starter, and sql init scripts. 
 
@@ -6,15 +6,10 @@ The main goal of this project is to serve as a reusable base for secure microser
 
 For security purposes, you should never store credentials inside this project - only as an environment variable or key in some other place. 
 
-## Goals
-- [x] Starter src and test structure
-- [x] Boilerplate service, repository, and DTOs
-- [x] Config testcontainers to use postgres for scalable integration tests
-- [x] Integrate OpenAPI for documentation and contract based development
-- [x] Sample database config in application.yml
-- [x] Stateless Spring security JWT authentication boilerplate to support single or multiple issuers
-- [x] Dockerfile for base image
-- [x] Yaml config for base pod using podman/kubernetes
+## Core Features
+- [] Multitenancy and Jobsite Routing
+- [] Volume tiered pricing
+- [] Quote to order workflow
 
 ## How to use
 1. Clone this repo into your own branch and use it to develop your own project OR download the zip. 
@@ -29,7 +24,7 @@ If you use this and end up releasing, all I ask for is a reference to this proje
 
 ## Project Structure Breakdown
 
-This repository is organized as a reusable Spring Boot microservice template. The root contains repository-level files, while the actual Spring Boot project lives under `your_repo_name/`.
+This repository is organized as a reusable Spring Boot microservice template. The root contains repository-level files, while the actual Spring Boot project lives under `jobsite_management_service/`.
 
 ```text
 spring-boot-starter-template/
@@ -40,7 +35,7 @@ spring-boot-starter-template/
   LICENSE
   README.md
 
-  your_repo_name/
+  jobsite_management_service/
     pom.xml
     # Maven build configuration.
     # Defines Spring Boot dependencies, PostgreSQL, Liquibase, Testcontainers,
@@ -68,9 +63,9 @@ spring-boot-starter-template/
     src/
       main/
         java/
-          com/example_project_name/
+          com/jobsite_management_service/
             app/
-              MyServiceApplication.java
+              JobsiteManagementApplication.java
               # Main Spring Boot application entry point.
 
             config/
@@ -117,11 +112,11 @@ spring-boot-starter-template/
       test/
         java/
           integration/
-            com/example_project_name/
+            com/jobsite_management_service/
               # Integration tests, including database/application-context tests.
 
           unit/
-            com/example_project_name/service/
+            com/jobsite_management_service/service/
               # Unit tests for service-layer logic.
 
         resources/
@@ -135,12 +130,12 @@ spring-boot-starter-template/
 During the Maven build, the OpenAPI generator creates Java sources under:
 
 ```text
-your_repo_name/
+jobsite_management_service/
   target/
     generated-sources/
       openapi/
         src/main/java/
-          com/example_project_name/generated/
+          com/jobsite_management_service/generated/
             api/
             model/
 ```

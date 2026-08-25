@@ -2,11 +2,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-MyServiceApplication<your_repo_name>",
+            "name": "Spring Boot-JobsiteManagementApplication<jobsite_management_service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.example_project_name.app.MyServiceApplication",
-            "projectName": "your_repo_name",
+            "mainClass": "com.jobsite_management_service.app.JobsiteManagementApplication",
+            "projectName": "jobsite_management_service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
