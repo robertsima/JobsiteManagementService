@@ -11,20 +11,7 @@ For security purposes, you should never store credentials inside this project - 
 - [] Volume tiered pricing
 - [] Quote to order workflow
 
-## How to use
-1. Clone this repo into your own branch and use it to develop your own project OR download the zip. 
-
-```git clone (git project link)```
-
-2. Modify project folder structure, change code, replace connection strings, and change /config files to match your use case. 
-
-3. Start developing! 
-
-If you use this and end up releasing, all I ask for is a reference to this project somehow. 
-
 ## Project Structure Breakdown
-
-This repository is organized as a reusable Spring Boot microservice template. The root contains repository-level files, while the actual Spring Boot project lives under `jobsite_management_service/`.
 
 ```text
 spring-boot-starter-template/

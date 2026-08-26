@@ -10,13 +10,12 @@ spring:
 #          issuer-uris:
 #            - https://<your-keycloak-domain>/realms/your-realm
 #            - https://<other-domain>/realms/other-realm
+springdoc:
+  enable-data-rest: false
+  packages-to-scan: com.jobsite_management_service.controller
 
 server:
   port: 8181
-
-#springdoc:
-#  enable-data-rest: false
-#  packages-to-scan: com.jobsite_management_service.controller
 
 # issuer-uris can be omitted if keycloak.auth-server-url and keycloak.realm are configured.
 
