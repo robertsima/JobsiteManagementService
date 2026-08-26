@@ -1,18 +1,50 @@
 spring:
   application:
     name: jobsite_management_service
-#  liquibase:
-#    change-log: classpath:db/changelog/db.changelog.xml
-#  security:
-#    oauth2:
-#      resourceserver:
-#        jwt:
-#          issuer-uris:
-#            - https://<your-keycloak-domain>/realms/your-realm
-#            - https://<other-domain>/realms/other-realm
-springdoc:
-  enable-data-rest: false
-  packages-to-scan: com.jobsite_management_service.controller
+#---------postgres config -----------------------
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://127.0.0.1:5432/appdb}
+    username: ${DB_USER:appuser}
+    password: ${DB_PASSWORD:apppassword}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+  jpa:
+    hibernate:
+      ddl-auto: update    # use 'validate' or remove for production
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+#-----------------h2 datasource------------------
+#  datasource:
+#    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+#    driver-class-name: org.h2.Driver
+#    username: sa
+#    password: password
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+#  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+#    hibernate:
+#      ddl-auto: update
+#-----------------h2 datasource ends------------------
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog.xml
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uris:
+            - https://<your-keycloak-domain>/realms/your-realm
+            - https://<other-domain>/realms/other-realm
+#springdoc:
+#  enable-data-rest: false
+#  packages-to-scan: com.jobsite_management_service.controller
 
 server:
   port: 8181
@@ -21,12 +53,12 @@ server:
 
 # Optional database configuration (Postgres) - uncomment and set real values for runtime use.
 # Use environment variables to override defaults in CI/production.
-#
+
 #spring:
 #  datasource:
 #    url: ${DB_URL:jdbc:postgresql://localhost:5432/myapp}
-#    username: ${DB_USER:postgres}
-#    password: ${DB_PASSWORD:postgres}
+#    username: ${DB_USER:appuser}
+#    password: ${DB_PASSWORD:apppassword}
 #    driver-class-name: org.postgresql.Driver
 #    hikari:
 #      maximum-pool-size: 10

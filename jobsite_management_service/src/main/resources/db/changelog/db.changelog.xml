@@ -13,5 +13,14 @@
 	            splitStatements="true"
 	            stripComments="true" />
 	</changeSet>
+
+	<changeSet id="1.0.1-seed-schema-data" author="robert.sima">
+		<comment>Creating basic schema</comment>
+		<sqlFile
+				path="scripts/seed-data.sql"
+				relativeToChangelogFile="true"
+				splitStatements="true"
+				stripComments="true" />
+	</changeSet>
 	
 </databaseChangeLog>
