@@ -1,10 +1,77 @@
 # Jobsite Management Service
-## Stateless OIDC/OAuth(Single or multiple issuers), PostgreSQL, TestContainers, Liquibase, Docker/Postman, OpenAPI
-This project serves as a boilerplate template for a scalable spring boot microservice. Configured for integration testing using Postgres SQL in TestContainers as well as OAuth2/OIDC JWT authentication. This specific template is designed around using keycloak for authentication/authorization but can be changed to fit whatever need. Also comes with a base docker image, yaml for kubernetes pods, liquibase(prod and test) starter, and sql init scripts. 
+The main purpose behind this project is to practice implementations for common design patterns and connect object relationship principles, object-oriented principles, and system architecture.
 
-The main goal of this project is to serve as a reusable base for secure microservices. If using this base, you just need to rename/restructure the project to fit your needs and plug in connection information wherever necessary. 
+**Object Oriented Principles (I-APE)**
+Inheritance - _Is-A_
+Abstraction
+Polymorphism
+Encapsulation
 
-For security purposes, you should never store credentials inside this project - only as an environment variable or key in some other place. 
+**Object Relationship Principles (ACA)**
+Association - _Can-use_
+Composition - _Part-of_
+Aggregation - _Has-a_
+
+**Design Principles (SOLID)**
+Single Responsibility
+Open/Closed
+Liskov substitution - _Is-a_
+Interface segregation - _Can-do_
+Dependency injection
+
+## Design Patterns to Implement
+### Creational
+Having to do with instantiation of a class and setting state.
+
+Strongly related OOP: Inheritance, Abstraction, Polymorphism, Encapsulation
+SOLID: Liskov substitution, Dependency injection
+
+- [] Singleton
+- [] Factory/Abstract Factory
+- [] Builder
+- [] Prototype
+
+### Structural 
+Having to do creation of classes, interfaces, overall global project 'blueprints'.
+
+Strongly related OOP: Inheritance, Abstraction, Polymorphism, Encapsulation
+SOLID: Single Responsibility, Interface Segregation, Liskov, Open/Closed
+All Object Relationship Principles
+
+- [] Adapter
+- [] Composite
+- [] Proxy
+- [] Flyweight
+- [] Facade
+- [] Bridge
+- [] Decorator
+
+### Behavioral
+Has to do with describing ideal solutions for object relationships involving association principle
+
+Strongly related OOP: Inheritance, Abstraction, Polymorphism, Encapsulation
+SOLID: Single Responsibility, Open/Closed
+ACA: Association
+
+- [] Template
+- [] Mediator
+- [] Chain-of-responsibility
+- [] Observer
+- [] Strategy
+- [] Command
+- [] State
+- [] Visitor
+- [] Interpreter
+- [] Iterator
+- [] Memento
+
+### Miscellaneous
+- [] MVC
+- [] DAO
+- [] Dependency Injection
+
+
+Will try to not over-engineeer solutions just for the sake of implementing these design patterns however the goal is to use them so that might happen a little. 
 
 ## Core Features
 - [] Multitenancy and Jobsite Routing
