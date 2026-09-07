@@ -1,6 +1,6 @@
 package com.jobsite_management_service.controller;
 
-import com.jobsite_management_service.orchestration.InformationOrchestrator;
+import com.jobsite_management_service.business.orchestration.InformationOrchestrator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;

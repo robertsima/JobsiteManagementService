@@ -1,4 +1,4 @@
-package com.jobsite_management_service.service;
+package com.jobsite_management_service.business.service;
 
 import com.jobsite_management_service.repository.UserRepository;
 

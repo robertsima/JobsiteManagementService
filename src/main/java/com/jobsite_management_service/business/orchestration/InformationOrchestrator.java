@@ -1,7 +1,7 @@
-package com.jobsite_management_service.orchestration;
+package com.jobsite_management_service.business.orchestration;
 
-import com.jobsite_management_service.service.UserService;
-import com.jobsite_management_service.service.JobsiteService;
+import com.jobsite_management_service.business.service.UserService;
+import com.jobsite_management_service.business.service.JobsiteService;
 
 import java.util.List;
 
