@@ -22,5 +22,14 @@
 				splitStatements="true"
 				stripComments="true" />
 	</changeSet>
-	
+
+	<changeSet id="1.0.2-seed-inventory-catalog" author="robert.sima">
+		<comment>Expanding each provider inventory so item search and filtering have real data</comment>
+		<sqlFile
+				path="scripts/seed-inventory-catalog.sql"
+				relativeToChangelogFile="true"
+				splitStatements="true"
+				stripComments="true" />
+	</changeSet>
+
 </databaseChangeLog>
