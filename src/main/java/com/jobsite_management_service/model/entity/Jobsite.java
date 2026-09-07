@@ -1,6 +1,5 @@
 package com.jobsite_management_service.model.entity;
 
-import com.jobsite_management_service.abstraction.User;
 import com.jobsite_management_service.abstraction.enums.JobsiteType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,8 +9,9 @@ import java.time.OffsetDateTime;
 @Entity
 @Getter
 @Setter
-@EqualsAndHashCode
-@ToString
+@NoArgsConstructor
+@EqualsAndHashCode(of = "id")
+@ToString(exclude = {"business", "requestor"})
 @Table(name = "jobsites")
 public class Jobsite implements com.jobsite_management_service.abstraction.Jobsite {
 
@@ -20,37 +20,57 @@ public class Jobsite implements com.jobsite_management_service.abstraction.Jobsi
     @Setter(AccessLevel.NONE)
     Long id;
 
-    @Column
-    Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "business_id")
+    Business business;
 
-    @Column
+    //covariant return satisfies abstraction.Jobsite#getRequestor
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    User requestor;
+
+    @Column(name = "name", nullable = false)
+    String name;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "jobsite_type", nullable = false)
+    JobsiteType jobsiteType;
+
+    @Column(name = "address", nullable = false)
     String address;
 
-    @Column
-    String zipcode;
+    @Column(name = "address_line_2")
+    String addressLine2;
 
-    @Column
+    @Column(name = "city", nullable = false)
     String city;
 
-    @Column
+    @Column(name = "state", nullable = false)
     String state;
 
-    @Column
+    @Column(name = "zipcode", nullable = false)
+    String zipcode;
+
+    @Column(name = "country", nullable = false)
     String country;
 
-    @Column
+    @Column(name = "start_date")
+    OffsetDateTime startDate;
+
+    @Column(name = "expected_completion")
     OffsetDateTime expectedCompletion;
 
-    @Column
+    @Column(name = "active", nullable = false)
+    Boolean active = Boolean.TRUE;
+
+    @Column(name = "created_at")
     OffsetDateTime createdAt;
 
-    @Override
-    public User getRequestor() {
-        return null;
-    }
+    @Column(name = "updated_at")
+    OffsetDateTime updatedAt;
 
-    @Override
-    public JobsiteType getJobsiteType() {
-        return null;
+    //convenience for reports/search - one printable location line
+    public String getLocation() {
+        return String.format("%s, %s, %s %s, %s", address, city, state, zipcode, country);
     }
 }
