@@ -42,11 +42,11 @@ public class InformationManagementControllerIT {
         String mockEmail = "test@example.com";
         List<String> mockLocations = List.of("Location A");
 
-        Mockito.when(informationOrchestrator.getAllLocationsByCustomerEmail(mockEmail))
+        Mockito.when(informationOrchestrator.getAllLocationsByUserEmail(mockEmail))
                 .thenReturn(mockLocations);
 
         // 5. This will now execute perfectly without invoking Spring's container
-        mockMvc.perform(get("/api/v1/customers/locations")
+        mockMvc.perform(get("/api/v1/users/locations")
                         .param("email", mockEmail))
                 .andExpect(status().isOk());
     }

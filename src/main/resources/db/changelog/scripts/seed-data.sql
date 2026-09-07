@@ -1,10 +1,10 @@
 --liquibase formatted sql
 
 --changeset robertsima:seed-starter-data-001
---comment: Seed starter customers, jobsites, quotes, and orders with proper foreign-key references.
+--comment: Seed starter users, jobsites, quotes, and orders with proper foreign-key references.
 
-WITH seeded_customers AS (
-INSERT INTO public.customers (name, email)
+WITH seeded_users AS (
+INSERT INTO public.users (name, email)
 VALUES
     ('Acme Construction', 'contact@acmeconstruction.test'),
     ('Northwind Builders', 'hello@northwindbuilders.test'),
@@ -14,14 +14,14 @@ ON CONFLICT (email) DO UPDATE
                            RETURNING id, email
                            ),
 
-                           all_customers AS (
+                           all_users AS (
                        SELECT id, email
-                       FROM seeded_customers
+                       FROM seeded_users
 
                        UNION
 
                        SELECT id, email
-                       FROM public.customers
+                       FROM public.users
                        WHERE email IN (
                            'contact@acmeconstruction.test',
                            'hello@northwindbuilders.test',
@@ -31,7 +31,7 @@ ON CONFLICT (email) DO UPDATE
 
                            seeded_jobsites AS (
                        INSERT INTO public.jobsites (
-    customer_id,
+    user_id,
     address,
     zipcode,
     city,
@@ -77,7 +77,7 @@ ON CONFLICT (email) DO UPDATE
                            TIMESTAMP '2026-12-05 17:00:00'
                            )
                            ) AS v (
-                           customer_email,
+                           user_email,
                            address,
                            zipcode,
                            city,
@@ -85,28 +85,28 @@ ON CONFLICT (email) DO UPDATE
                            country,
                            expected_completion
                            )
-                           JOIN all_customers c
-                       ON c.email = v.customer_email
+                           JOIN all_users c
+                       ON c.email = v.user_email
                        WHERE NOT EXISTS (
                            SELECT 1
                            FROM public.jobsites j
-                           WHERE j.customer_id = c.id
+                           WHERE j.user_id = c.id
                          AND j.address = v.address
                          AND j.zipcode = v.zipcode
                            )
-                           RETURNING id, customer_id, address, zipcode
+                           RETURNING id, user_id, address, zipcode
                            ),
 
                            all_jobsites AS (
-                       SELECT id, customer_id, address, zipcode
+                       SELECT id, user_id, address, zipcode
                        FROM seeded_jobsites
 
                        UNION
 
-                       SELECT j.id, j.customer_id, j.address, j.zipcode
+                       SELECT j.id, j.user_id, j.address, j.zipcode
                        FROM public.jobsites j
-                           JOIN all_customers c
-                       ON c.id = j.customer_id
+                           JOIN all_users c
+                       ON c.id = j.user_id
                        WHERE j.address IN (
                            '100 Main Street',
                            '250 Market Avenue',
@@ -117,13 +117,13 @@ ON CONFLICT (email) DO UPDATE
                            seeded_quotes AS (
                        INSERT INTO public.quotes (
     jobsite_id,
-    customer_id,
+    user_id,
     email,
     estimate
 )
                        SELECT
                            j.id,
-                           j.customer_id,
+                           j.user_id,
                            v.quote_email,
                            v.estimate
                        FROM (
@@ -143,16 +143,16 @@ ON CONFLICT (email) DO UPDATE
                            FROM public.quotes q
                            WHERE q.email = v.quote_email
                            )
-                           RETURNING id, jobsite_id, customer_id, email
+                           RETURNING id, jobsite_id, user_id, email
                            ),
 
                            all_quotes AS (
-                       SELECT id, jobsite_id, customer_id, email
+                       SELECT id, jobsite_id, user_id, email
                        FROM seeded_quotes
 
                        UNION
 
-                       SELECT id, jobsite_id, customer_id, email
+                       SELECT id, jobsite_id, user_id, email
                        FROM public.quotes
                        WHERE email IN (
                            'quote-acme-001@test.local',
@@ -163,13 +163,13 @@ ON CONFLICT (email) DO UPDATE
 
                        INSERT INTO public.orders (
     jobsite_id,
-    customer_id,
+    user_id,
     quote_id,
     email
 )
 SELECT
     q.jobsite_id,
-    q.customer_id,
+    q.user_id,
     q.id,
     v.order_email
 FROM (

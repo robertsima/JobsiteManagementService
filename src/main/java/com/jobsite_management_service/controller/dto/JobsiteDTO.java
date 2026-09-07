@@ -13,7 +13,7 @@ import java.time.OffsetDateTime;
 @EqualsAndHashCode
 public class JobsiteDTO {
     Long id;
-    Long customerId;
+    Long userId;
     String address;
     String zipcode;
     String city;
@@ -22,7 +22,7 @@ public class JobsiteDTO {
     OffsetDateTime expectedCompletion;
     OffsetDateTime createdAt;
 
-    public JobsiteDTO(OffsetDateTime createdAt, OffsetDateTime expectedCompletion, String country, String state, String city, String zipcode, String address, Long customerId, Long id) {
+    public JobsiteDTO(OffsetDateTime createdAt, OffsetDateTime expectedCompletion, String country, String state, String city, String zipcode, String address, Long userId, Long id) {
         this.createdAt = createdAt;
         this.expectedCompletion = expectedCompletion;
         this.country = country;
@@ -30,7 +30,7 @@ public class JobsiteDTO {
         this.city = city;
         this.zipcode = zipcode;
         this.address = address;
-        this.customerId = customerId;
+        this.userId = userId;
         this.id = id;
     }
 }

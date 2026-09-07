@@ -17,9 +17,9 @@ public class InformationManagementController {
     }
 
 
-    @GetMapping("/api/v1/customers/locations")
-    public ResponseEntity<List<String>> getAllLocationsByCustomerEmail(@RequestParam("email") String email) {
-        List<String> locations = informationOrchestrator.getAllLocationsByCustomerEmail(email);
+    @GetMapping("/api/v1/users/locations")
+    public ResponseEntity<List<String>> getAllLocationsByUserEmail(@RequestParam("email") String email) {
+        List<String> locations = informationOrchestrator.getAllLocationsByUserEmail(email);
 
         if (locations.isEmpty()) {
             return ResponseEntity.noContent().build(); // 204 No Content

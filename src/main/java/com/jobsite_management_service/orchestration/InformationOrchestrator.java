@@ -1,25 +1,24 @@
 package com.jobsite_management_service.orchestration;
 
-import com.jobsite_management_service.service.CustomerService;
+import com.jobsite_management_service.service.UserService;
 import com.jobsite_management_service.service.JobsiteService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
 public class InformationOrchestrator {
-    private CustomerService customerService;
+    private UserService userService;
     private JobsiteService jobsiteService;
 
-    public InformationOrchestrator(CustomerService customerService, JobsiteService jobsiteService) {
-        this.customerService = customerService;
+    public InformationOrchestrator(UserService userService, JobsiteService jobsiteService) {
+        this.userService = userService;
         this.jobsiteService = jobsiteService;
     }
 
-    //take email, call customer service and jobsite service to create output
-    public List<String> getAllLocationsByCustomerEmail(String email){
-        Long customerId = customerService.getCustomerIdByEmail(email);
+    //take email, call user service and jobsite service to create output
+    public List<String> getAllLocationsByUserEmail(String email){
+        Long userId = userService.getUserIdByEmail(email);
 
         //simple return here since JPA will return a list
-        return jobsiteService.getJobSitesByCustomerId(customerId);
+        return jobsiteService.getJobSitesByUserId(userId);
     }
 }

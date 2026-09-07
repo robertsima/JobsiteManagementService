@@ -21,7 +21,7 @@ public class JobsiteEntity {
     Long id;
 
     @Column
-    Long customerId;
+    Long userId;
 
     @Column
     String address;

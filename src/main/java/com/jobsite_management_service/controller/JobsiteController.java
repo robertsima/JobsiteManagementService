@@ -1,30 +1,29 @@
 package com.jobsite_management_service.controller;
 
-import com.jobsite_management_service.repository.CustomerRepository;
+import com.jobsite_management_service.repository.UserRepository;
 import com.jobsite_management_service.repository.JobsiteRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
 public class JobsiteController {
-    CustomerRepository customerRepository;
+    UserRepository userRepository;
     JobsiteRepository jobsiteRepository;
 
     //constructor dependency injection
-    public JobsiteController (CustomerRepository customerRepository, JobsiteRepository jobsiteRepository) {
-        this.customerRepository = customerRepository;
+    public JobsiteController (UserRepository userRepository, JobsiteRepository jobsiteRepository) {
+        this.userRepository = userRepository;
         this.jobsiteRepository = jobsiteRepository;
     }
 
     @GetMapping
-    public ResponseEntity<List<String>> testGetAllLocationsByCustomerEmail(String email) {
+    public ResponseEntity<List<String>> testGetAllLocationsByUserEmail(String email) {
 //        String response = "";
-        Long customerId = customerRepository.getIdByEmail(email);
-        List<String> locations = jobsiteRepository.getLocationsByCustomerId(customerId);
+        Long userId = userRepository.getIdByEmail(email);
+        List<String> locations = jobsiteRepository.getLocationsByUserId(userId);
 
         if (locations.isEmpty()) {
             return ResponseEntity.noContent().build(); // 204 No Content

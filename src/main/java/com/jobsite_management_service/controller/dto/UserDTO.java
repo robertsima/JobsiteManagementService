@@ -9,13 +9,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @EqualsAndHashCode
-public class CustomerDTO {
+public class UserDTO {
     Long id;
     String name;
     String email;
     String createdAt;
 
-    public CustomerDTO(String createdAt, String email, String name, Long id) {
+    public UserDTO(String createdAt, String email, String name, Long id) {
         this.createdAt = createdAt;
         this.email = email;
         this.name = name;
