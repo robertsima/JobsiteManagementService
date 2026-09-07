@@ -1,4 +1,4 @@
-package com.jobsite_management_service.model;
+package com.jobsite_management_service.model.entity;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
