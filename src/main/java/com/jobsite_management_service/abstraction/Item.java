@@ -4,7 +4,6 @@ public interface Item {
     String getSku();              // Essential identification
     String getName();
     double getPrice();
-
     String getColor();
     String getMaterial();
     String getDimensions();
