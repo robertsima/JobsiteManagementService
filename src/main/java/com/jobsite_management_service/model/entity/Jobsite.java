@@ -1,19 +1,17 @@
 package com.jobsite_management_service.model.entity;
 
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.OffsetDateTime;
 
 @Entity
 @Getter
 @Setter
+@EqualsAndHashCode
 @ToString
 @Table(name = "jobsites")
-public class JobsiteEntity {
+public class Jobsite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
