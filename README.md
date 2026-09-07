@@ -3,6 +3,8 @@ This project was made to demonstrate implementations for common design patterns 
 
 This project will serve as an open-source construction resource management ordering system. Business to business, the user of the application would be a construction business and they would be using 'providers' such as home depot to source jobsite construction materials. This application would be helpful for creating quotes and final orders/payments. 
 
+For the sake of learning, this project is heavily over-engineered.
+
 ## Project Overview
 Scope: Serve a construction business to assist with material ordering, quotes, provider/supplier access so that businesses can facilitate jobsite requirements
 
@@ -14,8 +16,24 @@ Core features:
 - Create orders and submit them
 - Make a payment on an order
 
-## Index
-
+## Project Structure
+`/src/main/java/com/jobsite_management_service
+  /abstraction
+    Contains abstraction layers: interfaces, enums
+  /app
+    Spring App execution file
+  /config
+    Configuration files
+  /controller
+    Controllers for endpoint definitions and RBAC
+  /model
+    DTOs/records and Entity files that contain localized business logic for internal state
+  /orchestration
+    Mediation between different objects or services
+  /repository
+    Contains JPA/Hiberate repositories + other related connection facades 
+  /service
+    Business logic pertaining to specific scopes, tied by orchestration package`
 
 ## Architecture Design Concepts
 **Object-Oriented Principles (I-APE)**
@@ -67,7 +85,7 @@ Strongly related OOP: Inheritance, Abstraction, Polymorphism, Encapsulation
 SOLID: Single Responsibility, Interface Segregation, Liskov, Open/Closed
 All Object Relationship Principles
 
-- [ ] Composite - Business/Client 
+- [x] Composite - Business/Client 
 Class made of other objects from different classes
 - [ ] Facade - Orchestrator
 A way to hide implementation logic using encapsulation and abstraction
@@ -96,8 +114,5 @@ ACA: Association
 - [ ] MVC
 - [ ] DAO
 - [ ] Dependency Injection
-
-
-For the sake of learning, will probably be over-engineering this project.
 
 ## Testing 
