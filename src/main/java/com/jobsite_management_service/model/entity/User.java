@@ -9,7 +9,7 @@ import lombok.*;
 @EqualsAndHashCode
 @ToString
 @Table(name = "users")
-public class User {
+public class User implements com.jobsite_management_service.abstraction.User {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,4 +24,19 @@ public class User {
 
     @Column
     String createdAt;
+
+    @Override
+    public String getUserType() {
+        return "";
+    }
+
+    @Override
+    public String getFullName() {
+        return "";
+    }
+
+    @Override
+    public String getUserId() {
+        return "";
+    }
 }

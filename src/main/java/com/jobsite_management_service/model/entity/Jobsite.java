@@ -1,5 +1,7 @@
 package com.jobsite_management_service.model.entity;
 
+import com.jobsite_management_service.abstraction.User;
+import com.jobsite_management_service.abstraction.enums.JobsiteType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,7 +13,7 @@ import java.time.OffsetDateTime;
 @EqualsAndHashCode
 @ToString
 @Table(name = "jobsites")
-public class Jobsite {
+public class Jobsite implements com.jobsite_management_service.abstraction.Jobsite {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,4 +43,14 @@ public class Jobsite {
 
     @Column
     OffsetDateTime createdAt;
+
+    @Override
+    public User getRequestor() {
+        return null;
+    }
+
+    @Override
+    public JobsiteType getJobsiteType() {
+        return null;
+    }
 }
